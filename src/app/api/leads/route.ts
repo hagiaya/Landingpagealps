@@ -4,7 +4,7 @@ import path from 'path';
 import { promises as fsPromises } from 'fs';
 
 // Define the path for our temporary storage file
-const leadsFilePath = path.join(process.cwd(), 'temp', 'leads.json');
+const leadsFilePath = path.join('/tmp', 'leads.json');
 
 // Ensure the temp directory exists
 if (!fs.existsSync(path.join(process.cwd(), 'temp'))) {

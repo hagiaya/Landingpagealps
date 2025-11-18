@@ -116,8 +116,8 @@ export default function LeadRow({ lead, serviceLabel, submittedAtFormatted }: Le
 
   return (
     <tr>
-      <td className="font-medium">{lead.name}</td>
-      <td>{lead.address}</td>
+      <td className="font-medium">{String(lead.name)}</td>
+      <td>{String(lead.address)}</td>
       <td>
         <Badge variant="outline">
           {serviceLabel}
@@ -134,7 +134,7 @@ export default function LeadRow({ lead, serviceLabel, submittedAtFormatted }: Le
             <DialogContent>
               <DialogTitle>Requested Features</DialogTitle>
               <div className="py-2 max-h-60 overflow-y-auto">
-                {lead.features}
+                {String(lead.features)}
               </div>
             </DialogContent>
           </Dialog>
@@ -144,14 +144,14 @@ export default function LeadRow({ lead, serviceLabel, submittedAtFormatted }: Le
       </td>
       <td>
         {lead.budget ? (
-          <Badge variant={lead.budget.startsWith('less-than') ? 'secondary' :
-                        lead.budget.startsWith('more-than') ? 'default' : 'outline'}>
+          <Badge variant={String(lead.budget).startsWith('less-than') ? 'secondary' :
+                        String(lead.budget).startsWith('more-than') ? 'default' : 'outline'}>
             {lead.budget === 'less-than-5jt' ? '< Rp 5jt' :
              lead.budget === '5jt-10jt' ? 'Rp 5jt-10jt' :
              lead.budget === '10jt-25jt' ? 'Rp 10jt-25jt' :
              lead.budget === '25jt-50jt' ? 'Rp 25jt-50jt' :
              lead.budget === 'more-than-50jt' ? '> Rp 50jt' :
-             lead.budget === 'not-sure' ? 'Tidak yakin' : lead.budget}
+             lead.budget === 'not-sure' ? 'Tidak yakin' : String(lead.budget)}
           </Badge>
         ) : (
           <span className="text-gray-400">-</span>
@@ -168,7 +168,7 @@ export default function LeadRow({ lead, serviceLabel, submittedAtFormatted }: Le
             <DialogContent>
               <DialogTitle>Project Description</DialogTitle>
               <div className="py-2 max-h-60 overflow-y-auto">
-                {lead.project_description}
+                {String(lead.project_description)}
               </div>
             </DialogContent>
           </Dialog>
@@ -179,12 +179,12 @@ export default function LeadRow({ lead, serviceLabel, submittedAtFormatted }: Le
       <td>
         {lead.phone_number ? (
           <a
-            href={`https://wa.me/${lead.phone_number.replace(/\D/g, '')}`}
+            href={`https://wa.me/${String(lead.phone_number).replace(/\D/g, '')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:underline flex items-center"
           >
-            <Phone className="h-4 w-4 mr-1" /> {lead.phone_number}
+            <Phone className="h-4 w-4 mr-1" /> {String(lead.phone_number)}
           </a>
         ) : (
           <span className="text-gray-400">-</span>
@@ -214,31 +214,31 @@ export default function LeadRow({ lead, serviceLabel, submittedAtFormatted }: Le
                 </DropdownMenuItem>
               </DialogTrigger>
               <DialogContent>
-                <DialogTitle>Contact {lead.name}</DialogTitle>
+                <DialogTitle>Contact {String(lead.name)}</DialogTitle>
                 <DialogDescription>
-                  Send a message to {lead.name} regarding their inquiry.
+                  Send a message to {String(lead.name)} regarding their inquiry.
                 </DialogDescription>
                 <div className="py-4 space-y-2">
                   <p><span className="font-medium">Service:</span> {serviceLabel}</p>
-                  <p><span className="font-medium">Address:</span> {lead.address}</p>
-                  <p><span className="font-medium">Features:</span> {lead.features || '-'}</p>
+                  <p><span className="font-medium">Address:</span> {String(lead.address)}</p>
+                  <p><span className="font-medium">Features:</span> {String(lead.features) || '-'}</p>
                   <p><span className="font-medium">Budget:</span> {lead.budget ?
                     (lead.budget === 'less-than-5jt' ? '< Rp 5jt' :
                      lead.budget === '5jt-10jt' ? 'Rp 5jt-10jt' :
                      lead.budget === '10jt-25jt' ? 'Rp 10jt-25jt' :
                      lead.budget === '25jt-50jt' ? 'Rp 25jt-50jt' :
                      lead.budget === 'more-than-50jt' ? '> Rp 50jt' :
-                     lead.budget === 'not-sure' ? 'Tidak yakin' : lead.budget) : '-'}</p>
+                     lead.budget === 'not-sure' ? 'Tidak yakin' : String(lead.budget)) : '-'}</p>
                   {lead.project_description && (
-                    <p><span className="font-medium">Project:</span> {lead.project_description}</p>
+                    <p><span className="font-medium">Project:</span> {String(lead.project_description)}</p>
                   )}
-                  <p><span className="font-medium">Phone:</span> {lead.phone_number}</p>
+                  <p><span className="font-medium">Phone:</span> {String(lead.phone_number)}</p>
                   <p><span className="font-medium">Submitted:</span> {submittedAtFormatted}</p>
                 </div>
                 <div className="flex justify-end space-x-2">
                   <Button variant="outline">
                     <a
-                      href={`https://wa.me/${(lead.phone_number || '').replace(/\D/g, '')}?text=Halo ${encodeURIComponent(lead.name)}, terima kasih atas inquiry Anda. Saya ingin membahas proyek ${encodeURIComponent(serviceLabel)} Anda, khususnya tentang fitur: ${encodeURIComponent(lead.features || 'tidak ada spesifikasi')}.`}
+                      href={`https://wa.me/${(String(lead.phone_number) || '').replace(/\D/g, '')}?text=Halo ${encodeURIComponent(String(lead.name))}, terima kasih atas inquiry Anda. Saya ingin membahas proyek ${encodeURIComponent(serviceLabel)} Anda, khususnya tentang fitur: ${encodeURIComponent(String(lead.features) || 'tidak ada spesifikasi')}.`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >

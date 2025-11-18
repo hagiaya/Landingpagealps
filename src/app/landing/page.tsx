@@ -2,14 +2,12 @@ import { landingPageServer, adminLandingPageServer } from '@/lib/landing-page-db
 import HeroSection from '@/components/landing-page/HeroSection';
 import PartnersSection from '@/components/landing-page/PartnersSection';
 import ServicesSection from '@/components/landing-page/ServicesSection';
-import PortfolioSection from '@/components/landing-page/PortfolioSection';
-import TestimonialsSection from '@/components/landing-page/TestimonialsSection';
-import ClientLocationsSection from '@/components/landing-page/ClientLocationsSection';
 import ProjectProgressSection from '@/components/landing-page/ProjectProgressSection';
 import NewsSection from '@/components/landing-page/NewsSection';
 import ClientThemeToggle from '@/components/ClientThemeToggle';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { 
   NavigationMenu, 
   NavigationMenuContent, 
@@ -20,6 +18,11 @@ import {
 } from '@/components/ui/navigation-menu';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
+
+const ClientLocationsSection = dynamic(() => import('@/components/landing-page/ClientLocationsSection'), { 
+  ssr: false,
+  loading: () => <div className="min-h-[400px] flex items-center justify-center"><p>Loading map...</p></div>
+});
 
 export default async function LandingPage() {
   // Fetch all data needed for the landing page in parallel
