@@ -172,4 +172,37 @@ CREATE POLICY "Users can manage own records" ON example_table
 - Ask questions in pull request discussions
 - Reach out to maintainers for guidance
 
+## WhatsApp Integration Setup
+
+The application supports automatic WhatsApp notifications when new leads are submitted. Follow these steps to configure:
+
+### Environment Variables
+
+Set the appropriate environment variables in your `.env.local` file:
+
+1. **For WhatsApp Business API (Meta)**:
+   ```
+   WHATSAPP_PROVIDER=whatsapp-business
+   WHATSAPP_BUSINESS_ACCESS_TOKEN=your_access_token
+   WHATSAPP_BUSINESS_PHONE_NUMBER_ID=your_phone_number_id
+   ```
+
+2. **For Twilio WhatsApp API**:
+   ```
+   WHATSAPP_PROVIDER=twilio
+   TWILIO_ACCOUNT_SID=your_account_sid
+   TWILIO_AUTH_TOKEN=your_auth_token
+   TWILIO_WHATSAPP_NUMBER=whatsapp:+your_twilio_number
+   ```
+
+3. **For Fontte or other custom API**:
+   ```
+   WHATSAPP_PROVIDER=generic
+   FONTE_API_URL=your_fontte_api_endpoint
+   FONTE_API_KEY=your_fontte_api_key
+   ```
+
+### Default Configuration
+The default setup uses the 'generic' provider which can be configured to work with Fontte or other custom WhatsApp APIs.
+
 Thank you for contributing to CodeGuide Starter Kit!

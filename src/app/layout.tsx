@@ -1,31 +1,32 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Parkinsans } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
+import { Barlow_Condensed } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { AuthProvider } from "@/components/AuthProvider";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const barlowCondensed = Barlow_Condensed({
+  variable: "--font-barlow-condensed",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const parkinsans = Parkinsans({
-  variable: "--font-parkinsans",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  fallback: ["system-ui", "sans-serif"],
-  adjustFontFallback: false,
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
-  title: "CodeGuide Starter Kit",
-  description:
-    "A modern Next.js starter with TypeScript, TailwindCSS, shadcn/ui, Vercel AI SDK, Clerk, and Supabase",
+  title: "Digital Agency",
+  description: "Landing page with admin panel for digital agency services",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  openGraph: {
+    title: "Digital Agency",
+    description: "Landing page with admin panel for digital agency services",
+    type: "website",
+  },
+};
+
+export const viewport = {
+  themeColor: "#ffffff",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -34,11 +35,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body
-          className={`${geistSans.className} ${geistMono.className} ${parkinsans.className} antialiased`}
-        >
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${barlowCondensed.variable} antialiased`}
+        suppressHydrationWarning
+      >
+        <AuthProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -47,8 +49,8 @@ export default function RootLayout({
           >
             {children}
           </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+        </AuthProvider>
+      </body>
+    </html>
   );
 }

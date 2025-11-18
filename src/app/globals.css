@@ -6,9 +6,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-parkinsans: var(--font-parkinsans);
+  --font-sans: var(--font-barlow-condensed);
+  --font-mono: var(--font-stack-sans-notch);
+  --font-stack-sans-notch: "Stack Sans Notch", sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -48,6 +48,7 @@
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
+  --grid-line-color: rgba(0, 0, 0, 0.05);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -82,6 +83,7 @@
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
+  --grid-line-color: rgba(255, 255, 255, 0.05);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
@@ -120,4 +122,79 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.grid-pattern {
+  background-image:
+    linear-gradient(var(--grid-line-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Stack Sans Notch font classes */
+.stack-sans-notch {
+  font-family: "Stack Sans Notch", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.stack-sans-notch-thin {
+  font-family: "Stack Sans Notch", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.stack-sans-notch-light {
+  font-family: "Stack Sans Notch", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.stack-sans-notch-regular {
+  font-family: "Stack Sans Notch", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.stack-sans-notch-medium {
+  font-family: "Stack Sans Notch", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.stack-sans-notch-semibold {
+  font-family: "Stack Sans Notch", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.stack-sans-notch-bold {
+  font-family: "Stack Sans Notch", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Batik Pattern Background */
+.batik-background {
+  background-image:
+    /* Base purple background at 50% opacity */
+    linear-gradient(rgba(128, 0, 128, 0.5), rgba(128, 0, 128, 0.5)),
+    /* Batik pattern */
+    radial-gradient(circle at 10px 10px, rgba(255, 255, 255, 0.1) 2px, transparent 3px),
+    radial-gradient(circle at 30px 30px, rgba(255, 255, 255, 0.1) 4px, transparent 5px),
+    radial-gradient(circle at 50px 10px, rgba(255, 255, 255, 0.05) 1px, transparent 2px),
+    radial-gradient(circle at 70px 50px, rgba(255, 255, 255, 0.08) 3px, transparent 4px),
+    radial-gradient(circle at 20px 70px, rgba(255, 255, 255, 0.06) 2px, transparent 3px),
+    radial-gradient(circle at 60px 20px, rgba(255, 255, 255, 0.07) 2px, transparent 3px),
+    radial-gradient(circle at 40px 60px, rgba(255, 255, 255, 0.09) 3px, transparent 4px),
+    radial-gradient(circle at 80px 80px, rgba(255, 255, 255, 0.05) 1px, transparent 2px);
+  background-size: 200px 200px;
+  background-position: 0 0, 0 0, 50px 20px, 20px 60px, 80px 40px, 40px 80px, 60px 0px, 0px 40px;
 }
